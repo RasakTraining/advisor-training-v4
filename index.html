@@ -106,8 +106,8 @@ button {
 വെറും 30 സീറ്റുകൾ മാത്രം ബാക്കി ! ഉടൻ രജിസ്റ്റർ ചെയ്യൂ ⏳
 </p>
 
-<a href="javascript:void(0)" onclick="sendToWhatsApp('register')" class="btn" style="margin-top:20px;">
-👉 ഇപ്പോൾ തന്നെ രജിസ്റ്റർ ചെയ്യൂ (WhatsApp)
+<a href="#registerForm" class="btn" style="margin-top:20px;">
+👉 ഇപ്പോൾ തന്നെ രജിസ്റ്റർ ചെയ്യൂ
 </a>
 
 <p id="formMsg" style="color:#ffcc00; font-weight:bold; text-align:center; margin-top:10px; font-size:16px;"></p>
@@ -263,7 +263,7 @@ style="margin-top:10px;width:100%;max-width:400px;border-radius:10px;">
 </div>
 </section>
 
-<section style="text-align:center;">
+<section id="registerForm" style="text-align:center;">
 <div class="container">
 
 <h2 style="color:red;">സീറ്റുകൾ പരിമിതമാണ്</h2>
@@ -413,15 +413,31 @@ const source=params.get("src")||"direct";
 
 var buttonType = type || "unknown";
 
-var msg="Hi Sir, I want to register.%0A%0A"
-+"Name: "+name+"%0A"
-+"Phone: "+phone+"%0A"
-+"Branch: "+branch+"%0A"
-+"Source: "+source+"%0A"
-+"Button: "+buttonType;
+var now = new Date().toLocaleString();
+
+var msg = encodeURIComponent(
+  "Hello Sir,\nഞാൻ ട്രെയിനിംഗിന് രജിസ്റ്റർ ചെയ്യാൻ ആഗ്രഹിക്കുന്നു.\n\n" +
+  "👤 Name: " + name + "\n" +
+  "📞 Phone: " + phone + "\n" +
+  "🏢 Branch: " + branch + "\n" +
+  "📍 Source: " + source + "\n" +
+  "🔘 Button: " + buttonType + "\n" +
+  "🕒 Time: " + now
+);
 
 window.open("https://wa.me/919846220955?text="+msg,"_blank");
 }
+
+var btn = document.querySelector('a[href="#registerForm"]');
+if (btn) {
+  btn.addEventListener('click', function () {
+    setTimeout(function () {
+      var input = document.getElementById("name");
+      if (input) input.focus();
+    }, 500);
+  });
+}
+
 </script>
 
 </body>

@@ -107,8 +107,10 @@ button {
 </p>
 
 <a href="javascript:void(0)" onclick="sendToWhatsApp('register')" class="btn" style="margin-top:20px;">
-👉 👉 ഇപ്പോൾ തന്നെ രജിസ്റ്റർ ചെയ്യൂ (WhatsApp)
+👉 ഇപ്പോൾ തന്നെ രജിസ്റ്റർ ചെയ്യൂ (WhatsApp)
 </a>
+
+<p id="formMsg" style="color:#d32f2f; font-weight:bold; text-align:center; margin-top:10px;"></p>
 
 </header>
 
@@ -400,8 +402,10 @@ var phone=document.getElementById("phone").value;
 var branch=document.getElementById("branch").value;
 
 if(name==="" || phone==="" || branch===""){
-alert("ദയവായി എല്ലാ വിവരങ്ങളും പൂരിപ്പിക്കുക");
-return;
+    document.getElementById("formMsg").innerHTML = "⚠️ ദയവായി എല്ലാ വിവരങ്ങളും പൂരിപ്പിക്കുക";
+    return;
+} else {
+    document.getElementById("formMsg").innerHTML = "";
 }
 
 const params=new URLSearchParams(window.location.search);
